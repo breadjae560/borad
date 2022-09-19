@@ -1,0 +1,107 @@
+CREATE TABLE TBL_BOARD(
+    BNO NUMBER PRIMARY KEY,
+    TITLE VARCHAR2(50) NOT NULL,
+    CONTENTS VARCHAR2(1000) NOT NULL,
+    WRITER VARCHAR2(20) NOT NULL,
+    REGDATE TIMESTAMP NOT NULL,
+    Hits NUMBER DEFAULT 1
+);
+
+drop table tbl_board;
+drop table tbl_reply;
+
+
+CREATE SEQUENCE SEQ_BNO;
+CREATE SEQUENCE SEQ_RNO;
+
+-- 댓글 테이블 컬럼
+CREATE TABLE TBL_REPLY(
+    RNO NUMBER PRIMARY KEY,
+    COMMENTS VARCHAR2(100) NOT NULL,
+    WRITER VARCHAR2(20) NOT NULL,
+    REGDATE TIMESTAMP NOT NULL,
+    BNO NUMBER NOT NULL,
+    CONSTRAINT FK_REPLY FOREIGN KEY (BNO) REFERENCES TBL_BOARD (BNO)
+);
+
+select name, email from tbl_member where id = 'admin';
+
+-- 회원가입 테이블 컬럼
+CREATE TABLE TBL_MEMBER(
+    ID VARCHAR2(20) PRIMARY KEY,
+    PW VARCHAR2(10) NOT NULL,
+    NAME VARCHAR2(50) NOT NULL,
+    EMAIL VARCHAR2(50),
+    permission varchar2(10)
+);
+select * from tbl_member;
+commit;
+insert into tbl_member values ('admin', '1234', '홍길동', 'email.com@gmail.com', 'admin');
+insert into tbl_member values ('user', '12345', '김길동', 'q1w2e3r4@gmail.com', 'user');
+select id from tbl_member;
+
+drop table tbl_Member;
+select id from tbl_member;
+
+-- permission number  if : 0(user) false : 1(admin)
+
+create SEQUENCE SEQ_NUM_BOARD_SIMPLE;
+
+CREATE TABLE TBL_release(
+    BNO NUMBER PRIMARY KEY,
+    TITLE VARCHAR2(50) NOT NULL,
+    CONTENTS VARCHAR2(1000) NOT NULL,
+    WRITER VARCHAR2(20) NOT NULL,
+    REGDATE DATE NOT NULL,
+    hits number DEFAULT 1
+);
+
+drop table tbl_release;
+
+    
+CREATE TABLE TBL_QNA(
+    QNO NUMBER PRIMARY KEY,
+    TITLE VARCHAR2(50) NOT NULL,
+    CONTENTS VARCHAR2(1000) NOT NULL,
+    WRITER VARCHAR2(20) NOT NULL,
+    REGDATE DATE NOT NULL,
+    hits number DEFAULT 1
+);
+DROP TABLE TBL_QNA;
+CREATE SEQUENCE SEQ_QNO;
+select * from tbl_Qna;
+    
+CREATE SEQUENCE SEQ_RELEASE;
+
+select boardpassword from tbl_board where bno = 141;
+
+
+select * from member;
+
+drop table member;
+
+create table member(
+    id varchar2(20),
+    pw varchar2(20),
+    name varchar2(20),
+    tel varchar2(20)
+    );
+    
+select  * from tbl_member;
+    
+    
+insert into member values ('admin', '1234', '어드민', '010-0000-0000');
+
+select * from posting;
+
+create table posting(
+    title varchar2(50),
+    content varchar2(1500),
+    REGDATE DATE
+    );
+
+select * from tbl_board;
+    
+
+
+insert into tbl_board values (seq_bno.NEXTVAL, '제목', '내용', '어드민', SYSDATE, 1, '1234');
